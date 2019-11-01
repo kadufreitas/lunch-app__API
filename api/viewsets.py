@@ -6,7 +6,7 @@ from .serializers import (
     ClientSerializer,
     ProductSerializer,
     ProductSerializerDetail,
-    SaleSerializer
+    SaleSerializer,
 )
 
 
@@ -41,3 +41,12 @@ class ProductListViewSet(ModelViewSet):
 class SaleDetailViewSet(ModelViewSet):
     queryset = Sale.objects.all()
     serializer_class = SaleSerializer
+    # def get_serializer_class(self):
+    #     if self.action == 'list':
+    #         return SaleListSerializer
+    #     if self.action == 'create':
+    #         return SaleSerializer
+    #     return SaleListSerializer
+
+    # queryset = Sale.objects.all()
+    # serializer_class = SaleSerializer
