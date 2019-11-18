@@ -56,20 +56,18 @@ class SaleSerializer(serializers.ModelSerializer):
         many=True,
         write_only=True
     )
-    products_names = serializers.StringRelatedField(source='products', read_only=True, many=True)
+    products_names = serializers.StringRelatedField(source='products', read_only=True,
+                                                    many=True)
     client_name = serializers.StringRelatedField(source='client', read_only=True)
     seller_name = serializers.StringRelatedField(source='seller', read_only=True)
 
     class Meta:
         model = Sale
         fields = (
-        'id', 'value', 'products', 'client', 'products_names', 'client_name',
-        'seller_name', 'seller', 'paid')
+            'id', 'value', 'products', 'client', 'products_names', 'client_name',
+            'seller_name', 'seller', 'paid')
         read_only_fields = ['value']
         extra_kwargs = {
-            'products': {
-                'write_only': True
-            },
             'client': {
                 'write_only': True
             },
