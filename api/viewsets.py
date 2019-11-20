@@ -1,4 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.schemas.openapi import AutoSchema
+import coreapi
 
 from app.models import Seller, Client, Product, Sale
 from .serializers import (
@@ -10,9 +12,15 @@ from .serializers import (
 )
 
 
+class CustomSchema(AutoSchema):
+    title = 'Meu vendedor'
+    description = 'Esse é a rota de venda'
+
+
 # Seller
 
 class SellerViewSet(ModelViewSet):
+    """APIView subclass with custom schema introspection."""
     queryset = Seller.objects.all()
     serializer_class = SellerSerializer
 
@@ -27,6 +35,7 @@ class ClientViewSet(ModelViewSet):
 # Product
 
 class ProductViewSet(ModelViewSet):
+    schema = None
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
